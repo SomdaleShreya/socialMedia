@@ -1,0 +1,101 @@
+@import '../../styles/_variables.scss';
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 750px;
+    background-color: $Card; /* Make form background white for focus */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.075);
+
+    /* Style the Quill editor */
+    .ql-editor {
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        border: 2px solid #1D306D;
+        //border-radius: 8px;
+        resize: vertical;
+        font-size: 1.1rem;
+        font-family: $main-font;
+        color: $text-color;
+        transition: border-color 0.3s ease;
+         background-color: white; // Editor background
+
+        &:focus {
+            border: 2px solid #1D306D;
+            outline: none;
+            border-color: gray;
+        }
+    }
+
+  // make CSS work with label function. 
+  
+   .custom-file-upload {
+    width: 20vh;
+    margin-top: 7vh;
+    //margin-bottom: 2vh;
+    height: 3vh;
+    border: 2px solid  #1D306D;
+    padding: 4px 8px; 
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+    border-radius: 8px;
+    //margin-bottom: 1.25rem; //Removed here
+    font-size: 1rem;
+    color: black; /* Make sure font is visible */
+    display: flex;
+    align-items: baseline; /* align icons on bottom */
+
+    svg{
+    margin-right: 0.5rem /* The Icon*/
+}
+   }
+
+    button {
+        padding: 0.6rem 1.2rem;
+        background-color: #1D306D; /* Use green button */
+        color: $white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+            background-color: darken(#597199, 10%); /* Darken green */
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+
+    .error-message {
+        color: $secondary-color;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .preview-container {
+    display: flex;
+    flex-wrap: wrap;  /* Allow images to wrap */
+    margin-bottom: 0.5rem;
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px; // Optional: Add some rounding
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    }
+}
+}

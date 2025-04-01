@@ -1,0 +1,20 @@
+@import './styles/_variables.scss'; // Import variables
+
+body {
+    font-family: $main-font;
+    background-color: $background-color;;
+    color: $dark-gray;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
+}
+
+main {
+    flex: 1; /* Let the main content fill the remaining space */
+    padding: 2rem;
+}

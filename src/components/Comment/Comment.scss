@@ -1,0 +1,205 @@
+// --- Base Comment Styles (Mostly Unchanged) ---
+.comment {
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #262626;
+
+    .comment-main {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .comment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .comment-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .comment-content {
+        word-break: break-word;
+        width: 100%;
+        margin-bottom: 4px;
+
+        .comment-author {
+            font-weight: 600;
+            margin-right: 0.4em;
+            // Allow inline display with text if space permits
+            display: inline;
+            // Or uncomment below for block display always
+            // display: block;
+            // margin-bottom: 2px;
+        }
+        .comment-text {
+            display: inline; // Keep text on same line as author if possible
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .comment-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        color: #8e8e8e;
+        margin-bottom: 8px;
+    }
+
+    .action-link {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #8e8e8e;
+        &:hover { color: #555; }
+    }
+
+    .view-replies {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+        .line {
+            width: 24px;
+            height: 1px;
+            background-color: #dbdbdb;
+        }
+    }
+
+    .like-button {
+        background: none;
+        border: none;
+        padding: 0 5px;
+        cursor: pointer;
+        color: #8e8e8e;
+        font-size: 12px;
+        margin-left: auto;
+        align-self: center;
+        flex-shrink: 0;
+        .liked { color: #ed4956; }
+        &:hover {
+           color: #555;
+           .liked { color: #ed4956; }
+        }
+    }
+
+    .reply-form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
+        padding-left: 42px; // Indent reply form
+
+        .reply-avatar { // Can use this class for avatar in form AND in reply list items
+            width: 28px;
+            height: 28px;
+            border-radius: 50%; // Ensure roundness if reusing comment-avatar base
+            flex-shrink: 0;
+        }
+
+        .reply-input {
+            flex-grow: 1;
+            padding: 6px 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 15px;
+            font-size: 13px;
+            background-color: #fafafa;
+            &::placeholder { color: #aaa; }
+            &:focus { outline: none; border-color: #a8a8a8; }
+        }
+
+        .reply-submit-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0095f6;
+            font-size: 18px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:disabled { color: #b2dffc; cursor: default; }
+        }
+    }
+
+    // --- Styles for the container of replies ---
+    .replies-list {
+        margin-left: 42px; // Indent replies list (avatar width + gap)
+        padding-top: 12px; // Space above the first reply item
+        width: calc(100% - 42px);
+        box-sizing: border-box;
+        position: relative; // For potential connector line
+
+        /* Optional: Connector line */
+        /*
+        &::before {
+            content: ''; position: absolute; left: -27px; // Adjust position relative to avatar center
+            top: -5px; bottom: 5px; width: 1px; background-color: #dbdbdb;
+        }
+        */
+    }
+
+    // --- Styles for EACH individual reply item ---
+    .reply-item {
+        display: flex;
+        align-items: flex-start; // Align avatar top
+        gap: 8px; // Space between avatar and reply text
+        margin-bottom: 0.8rem; // Space between reply items
+        font-size: 13px; // Replies can be slightly smaller text
+
+        .reply-avatar { // Use the smaller avatar size defined in .reply-form
+             width: 28px;
+             height: 28px;
+             margin-top: 1px; // Fine-tune vertical alignment
+        }
+
+        .reply-body {
+            flex-grow: 1;
+            // Re-use comment-author and comment-text for consistency
+             .comment-author {
+                margin-right: 0.4em;
+                // display: inline; // Or block if preferred
+            }
+             .comment-text {
+                margin: 0;
+                padding: 0;
+                word-break: break-word;
+                // display: inline; // Or block if preferred
+             }
+        }
+         // Styles for reply meta (time, likes on reply - if added)
+         /*
+         .reply-meta {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 2px;
+            display: flex;
+            gap: 8px;
+        }
+        */
+    }
+
+    // --- Remove styles specific to NESTED comments ---
+    /* Delete or comment out rules like:
+       .replies .comment { ... }
+       .replies .comment .reply-form { ... }
+       .replies .comment .replies { ... }
+    */
+}

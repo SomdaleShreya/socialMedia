@@ -1,0 +1,32 @@
+.dashboard-post {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    //background-color: #f9f9f9;
+
+    .dashboard-post-header {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .dashboard-post-content {
+        p {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    }
+
+    .dashboard-post-status {
+        font-style: italic;
+        color: #777;
+        margin-top: 0.5rem;
+    }
+}

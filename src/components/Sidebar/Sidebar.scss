@@ -1,0 +1,201 @@
+@import '../../styles/_variables.scss';
+
+.sidebar {
+    width: 240px;  // Slightly narrower
+    height: 100vh;
+    background-color: #fff;  // White background for clean look
+    border-right: 1px solid #ddd;
+    padding: 20px 0;  // Reduced horizontal padding
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+    position: fixed; // Keeps sidebar in place while scrolling
+    top: 0;
+    left: 0;
+    z-index: 100; // Ensure it stays on top of other content
+
+    .header {
+       padding: 0 20px;
+       .logo {
+            margin-bottom: 20px;
+            font-style: italic;
+            padding: 1vh;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Tektur', sans-serif; // Modern tech-inspired font
+            color: #2EE6D6;
+            position: relative;
+            display: inline-block;
+            transform: skew(-5deg);
+
+            // Multi-layer shadow effect
+            text-shadow:
+                2px 2px 0 #E62E8D,
+                -1px -1px 0 #1D306D,
+                4px 4px 8px rgba(46, 230, 214, 0.3),
+                -2px -2px 4px rgba(230, 46, 141, 0.2);
+
+            // Gradient text overlay
+            &::after {
+                content: "Socialyte";
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: linear-gradient(
+                    145deg,
+                    transparent 48%,
+                    #E62E8D 50%,
+                    transparent 52%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                mix-blend-mode: screen;
+            }
+
+            // Decorative underline
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: -8px;
+                left: 0;
+                width: 110%;
+                height: 3px;
+                background: linear-gradient(
+                    90deg,
+                    #2EE6D6 0%,
+                    #E62E8D 50%,
+                    #2EE6D6 100%
+                );
+                transform: skew(-10deg);
+                border-radius: 2px;
+            }
+
+            &:hover {
+                text-shadow:
+                    3px 3px 0 #E62E8D,
+                    -2px -2px 0 #1D306D,
+                    5px 5px 12px rgba(46, 230, 214, 0.5),
+                    -3px -3px 6px rgba(230, 46, 141, 0.3);
+            }
+        }
+    }
+
+    .profile-section {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover; // Prevent image distortion
+        }
+
+        .profile-info {
+            .username {
+                font-weight: bold;
+                margin-bottom: 2px;
+            }
+
+            .fullname {
+                font-size: 0.9em;
+                color: #777;
+            }
+        }
+    }
+
+    nav {
+        
+        flex-grow: 1;  // Take up remaining space
+        padding: 10px 0;
+
+        ul {
+            
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                 
+                padding: 8px 20px;
+
+                a {
+                    gap: 2vh;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: 500;
+                    transition: color 0.2s ease;
+
+                    svg {
+                        margin-right: 10px;
+                        font-size: 1.2em;
+                        color: #777;
+                        transition: color 0.2s ease; // Icon color transition
+                    }
+
+                    &:hover, &.active {
+                        color: $primary-color;  // Use your primary color
+                        svg {
+                            color: $primary-color;
+                        }
+                    }
+
+                    &.active {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 0.8em;
+        color: #777;
+        border-top: 1px solid #eee;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+
+        .profile-section {
+            padding: 10px;
+            justify-content: center;
+
+            .profile-info {
+                text-align: center;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            overflow-x: auto; // Horizontal scrolling on small screens
+            white-space: nowrap; // Prevent wrapping
+
+            li {
+                padding: 5px 10px;
+
+                a {
+                    font-size: 0.9em;
+                }
+            }
+        }
+
+        footer {
+            display: none;
+        }
+    }
+}

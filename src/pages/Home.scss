@@ -1,0 +1,142 @@
+
+.home {
+    display: flex;
+    min-height: 100vh;
+    //background-color: #fafafa;
+
+    @media (max-width: 767px) {
+        flex-direction: column; /* Stack sidebar and content on small screens */
+    }
+
+    &__sidebar {
+        
+.header {
+     
+    .logo {
+     margin-bottom: 5vh;   
+    font-style: italic;
+    padding: 1vh;
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: 'Tektur', sans-serif; // Modern tech-inspired font
+    color: #2EE6D6;
+    position: relative;
+    display: inline-block;
+    transform: skew(-5deg);
+    
+    // Multi-layer shadow effect
+    text-shadow: 
+        2px 2px 0 #E62E8D,
+        -1px -1px 0 #1D306D,
+        4px 4px 8px rgba(46, 230, 214, 0.3),
+        -2px -2px 4px rgba(230, 46, 141, 0.2);
+    
+    // Gradient text overlay
+    &::after {
+        content: "Socialyte";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(
+            145deg,
+            transparent 48%,
+            #E62E8D 50%,
+            transparent 52%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        mix-blend-mode: screen;
+    }
+
+    // Decorative underline
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 110%;
+        height: 3px;
+        background: linear-gradient(
+            90deg,
+            #2EE6D6 0%,
+            #E62E8D 50%,
+            #2EE6D6 100%
+        );
+        transform: skew(-10deg);
+        border-radius: 2px;
+    }
+
+    &:hover {
+        text-shadow: 
+            3px 3px 0 #E62E8D,
+            -2px -2px 0 #1D306D,
+            5px 5px 12px rgba(46, 230, 214, 0.5),
+            -3px -3px 6px rgba(230, 46, 141, 0.3);
+    }
+}
+
+}
+        width: 250px;
+        padding: 20px;
+        background-color: #fff;
+        border-right: 1px solid #e0e0e0;
+        position: Fixed;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+
+
+        @media (max-width: 767px) {
+            width: 100%; /* Full width on small screens */
+            border-right: none; /* Remove border */
+            border-bottom: 1px solid #e0e0e0;
+            position: static; /* No sticky positioning */
+            height: auto;     /* Reset height */
+            overflow-y: visible;
+            padding: 10px;
+
+            /* Hide sidebar content by default on small screens */
+            /*& > *:not(.mobile-menu-toggle) {*/
+            /*    display: none;*/
+            /*}*/
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 8px 0;
+                border-bottom: 1px solid #e0e0e0;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #00376b;
+                    font-weight: 500;
+
+                    &:hover {
+                        color: #0095f6;
+                    }
+                }
+            }
+        }
+    }
+
+    &__content {
+        //background-color: #fafafa;
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media (min-width: 768px) {
+            padding-left: 40px;
+        }
+    }
+}

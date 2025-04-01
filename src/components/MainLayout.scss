@@ -1,0 +1,17 @@
+// MainLayout.scss
+.main-layout {
+    display: flex;
+    min-height: 100vh;
+  
+    .content {
+      flex-grow: 1;
+      padding: 20px; /* Adjust as needed */
+      margin-left: 220px; /*  Match sidebar width */
+    }
+    @media (max-width: 768px) {
+      .content {
+        margin-left: 0;
+        padding: 10px;
+      }
+    }
+  }
