@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-//import Header from './components/Header/Header';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Login from './components/Auth/Login';
@@ -8,12 +7,12 @@ import Signup from './components/Auth/Signup';
 import UserDashboard from './components/UserDashboard/UserDashboard';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import './App.scss';
-import { ThemeProvider } from './context/ThemeContext'; // Optional: Theme Context
-import Sidebar from './components/Sidebar/Sidebar';
+import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './components/MainLayout';
+
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [posts, setPosts] = useState(() => {
-        // Initialize with some simulated data for testing
         const initialPosts = [
             { id: 1, content: 'Approved post 1', status: 'approved' },
             { id: 2, content: 'Pending post 1', status: 'pending' },
@@ -37,19 +36,49 @@ function App() {
         ));
     };
 
-    const approvedPost= posts.filter(post => post.status === 'approved') //filter
+    const approvedPost = posts.filter(post => post.status === 'approved');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    const handleLoginSuccess = () => {
+        setIsLoggedIn(true);
+    };
 
     return (
         <ThemeProvider>
             <Router>
-                
                 <Routes>
-                    <Route path="/" element={<MainLayout> <Home handlePostCreated={handlePostCreated} defaultAvatar={"default-avatar.png"} approvedPost={approvedPost}/></MainLayout>} />
-                    <Route path="/profile" element={ <MainLayout> <Profile /> </MainLayout>} />
-                    <Route path="/login" element={<MainLayout> <Login /></MainLayout>} />
-                    <Route path="/signup" element={<MainLayout> <Signup /></MainLayout>} />
-                    <Route path="/user-dashboard" element={<MainLayout> <UserDashboard posts={posts} /></MainLayout> } />
-                    <Route path="/admin-dashboard" element={<MainLayout> <AdminDashboard posts={posts} onPostUpdate={handlePostUpdate} /></MainLayout>} />
+                    <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login onLoginSuccess={handleLoginSuccess} />} />
+                    <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />
+
+                    {/* Protected Routes - Accessible Only After Login */}
+                    <Route
+                        path="/*" // Catch-all for all routes within the MainLayout
+                        element={isLoggedIn ? (
+                            <MainLayout
+                                handlePostCreated={handlePostCreated}
+                                defaultAvatar={"default-avatar.png"}
+                                approvedPost={approvedPost}
+                                posts={posts}
+                                onPostUpdate={handlePostUpdate}
+                            >
+                                <Routes>
+                                    <Route path="/" element={<Home handlePostCreated={handlePostCreated} defaultAvatar={ "default-avatar.png"} approvedPost={approvedPost} />} />
+                                    <Route path="/profile" element={<Profile />} />
+                                    <Route path="/user-dashboard" element={<UserDashboard posts={posts} />} />
+                                    <Route path="/admin-dashboard" element={<AdminDashboard posts={posts} onPostUpdate={handlePostUpdate} />} />
+                                </Routes>
+                            </MainLayout>
+                        ) : (
+                            <Navigate to="/login" />
+                        )}
+                    />
+
                 </Routes>
             </Router>
         </ThemeProvider>

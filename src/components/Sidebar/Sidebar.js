@@ -26,8 +26,7 @@ function Sidebar() {
                     <li><Link to="/profile" className={isActive('/profile') ? 'active' : ''}><FaUser /> Profile</Link></li>
                     <li><Link to="/user-dashboard" className={isActive('/user-dashboard') ? 'active' : ''}><FaUsers /> User Dashboard</Link></li>
                     <li><Link to="/admin-dashboard" className={isActive('/admin-dashboard') ? 'active' : ''}><FaCog /> Admin Dashboard</Link></li>
-                    <li><Link to="/login" className={isActive('/login') ? 'active' : ''}><FaSignOutAlt /> Login</Link></li>
-                    <li><Link to="/signup" className={isActive('/signup') ? 'active' : ''}><FaSignOutAlt /> Signup</Link></li>
+                     
                 </ul>
             </nav>
 

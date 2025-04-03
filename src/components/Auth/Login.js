@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/api';
+// import { login } from '../../services/api'; // Removed API call, keeping it frontend only
 import './Login.scss';
 
-function Login() {
+function Login({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -12,19 +12,13 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        try {
-            const response = await login({ username, password }); //API call
-            // Assuming your backend returns a token or user data on successful login
-            console.log("Login successful:", response);
-
-            // Store the token in local storage or context (Safer approach)
-            localStorage.setItem('token', response.token); //Example
-
-            // Redirect to home page or profile
-            navigate('/');
-        } catch (err) {
-            setError(err.response?.data?.message || 'Invalid username or password');
-            console.error("Login failed:", err);
+        //  FRONTEND-ONLY LOGIN WITH HARDCODED CREDENTIALS
+        if (username === 'demoUser' && password === 'demoPassword') {
+            localStorage.setItem('token', 'fakeToken'); // Just a placeholder token
+            onLoginSuccess(); // Tell App.js we logged in
+            navigate('/'); // Go to the home page
+        } else {
+            setError('Invalid username or password');
         }
     };
 
